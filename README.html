@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Par de Puntos Más Cercano - Documentación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+            background: white;
+        }
+        
+        h1 {
+            color: #1a1a1a;
+            font-size: 28pt;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #333;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 20pt;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 16pt;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 14pt;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        
+        code {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 11pt;
+        }
+        
+        pre {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .section {
+            page-break-inside: avoid;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .formula {
+            text-align: center;
+            font-size: 14pt;
+            margin: 20px 0;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .important {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        @media print {
+            body {
+                padding: 15mm;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            pre, table {
+                page-break-inside: avoid;
+            }
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Par de Puntos Más Cercano - Divide y Conquista</h1>
+
+<div class="section">
+    <h2>1. Descripción</h2>
+    <p>
+        Este proyecto implementa el algoritmo de <strong>Divide y Conquista</strong> para encontrar el par de puntos 
+        con la menor distancia euclidiana en un conjunto de puntos en el plano 2D. El algoritmo es eficiente y tiene 
+        una complejidad temporal de <strong>O(n log n)</strong>.
+    </p>
+</div>
+
+<div class="section">
+    <h2>2. Objetivo</h2>
+    <p>
+        Dado un conjunto de <code>n</code> puntos en el plano 2D, encontrar el par de puntos que tienen la menor 
+        distancia euclidiana entre ellos, utilizando la estrategia de divide y conquista en lugar del enfoque de 
+        fuerza bruta O(n²).
+    </p>
+</div>
+
+<div class="section page-break">
+    <h2>3. Arquitectura del Proyecto</h2>
+    
+    <h3>3.1 Estructura de Archivos</h3>
+    <pre>proyecto/
+│
+├── par_mas_cercano.py          # Código principal
+├── datos_100.txt               # Archivo de prueba con 100 puntos
+├── datos_1000.txt              # Archivo de prueba con 1000 puntos
+├── datos_10000.txt             # Archivo de prueba con 10000 puntos
+└── README.md                   # Documentación</pre>
+
+    <h3>3.2 Componentes Principales</h3>
+    
+    <h4>3.2.1 Clase ContadoresAlgoritmo</h4>
+    <pre>class ContadoresAlgoritmo:
+    - llamadas: Contador de llamadas recursivas
+    - fuerza_bruta: Contador de llamadas a fuerza bruta
+    - distancia: Contador de cálculos de distancia
+    - franja: Contador de búsquedas en franja</pre>
+    
+    <p>Esta clase encapsula todos los contadores para análisis de rendimiento, eliminando el uso de variables globales.</p>
+
+    <h4>3.2.2 Funciones de Entrada/Salida</h4>
+    <ul>
+        <li><code>leer_puntos_archivo(nombre_archivo)</code>: Lee coordenadas desde un archivo de texto</li>
+        <li><code>mostrar_menu()</code>: Muestra el menú interactivo</li>
+        <li><code>obtener_nombre_archivo()</code>: Gestiona la selección de archivos</li>
+        <li><code>imprimir_resultados(...)</code>: Formatea y muestra los resultados</li>
+    </ul>
+
+    <h4>3.2.3 Funciones del Algoritmo</h4>
+    <ul>
+        <li><code>calcular_distancia(punto1, punto2)</code>: Calcula la distancia euclidiana</li>
+        <li><code>fuerza_bruta_par_cercano(puntos)</code>: Encuentra el par más cercano por fuerza bruta (caso base)</li>
+        <li><code>par_cercano_en_franja(franja, delta, mejor_par)</code>: Busca en la franja central</li>
+        <li><code>par_mas_cercano_recursivo(puntos_x, puntos_y)</code>: Implementación recursiva principal</li>
+        <li><code>encontrar_par_mas_cercano(puntos)</code>: Función coordinadora principal</li>
+    </ul>
+</div>
+
+<div class="section page-break">
+    <h2>4. Algoritmo: Divide y Conquista</h2>
+    
+    <h3>4.1 Estrategia</h3>
+    <p>El algoritmo sigue tres pasos fundamentales:</p>
+
+    <h4>4.1.1 DIVIDIR</h4>
+    <ul>
+        <li>Ordenar los puntos por coordenada X</li>
+        <li>Dividir el conjunto en dos mitades con una línea vertical</li>
+        <li>Mantener también los puntos ordenados por coordenada Y</li>
+    </ul>
+
+    <h4>4.1.2 CONQUISTAR</h4>
+    <ul>
+        <li>Resolver recursivamente para la mitad izquierda → <code>d_izq</code></li>
+        <li>Resolver recursivamente para la mitad derecha → <code>d_der</code></li>
+        <li>Tomar el mínimo: <code>δ = min(d_izq, d_der)</code></li>
+    </ul>
+
+    <h4>4.1.3 COMBINAR</h4>
+    <ul>
+        <li>Construir una franja de ancho <code>2δ</code> alrededor de la línea divisoria</li>
+        <li>Buscar pares en la franja que puedan estar más cerca que <code>δ</code></li>
+        <li>Solo es necesario comparar cada punto con los 7 siguientes (ordenados por Y)</li>
+    </ul>
+
+    <h3>4.2 Pseudocódigo</h3>
+    <pre>función encontrar_par_mas_cercano(puntos):
+    si puntos.length ≤ 3:
+        retornar fuerza_bruta(puntos)
+    
+    mitad = puntos.length / 2
+    puntos_izq = puntos[0:mitad]
+    puntos_der = puntos[mitad:end]
+    
+    (p1_izq, p2_izq, d_izq) = encontrar_par_mas_cercano(puntos_izq)
+    (p1_der, p2_der, d_der) = encontrar_par_mas_cercano(puntos_der)
+    
+    δ = min(d_izq, d_der)
+    mejor_par = par con distancia δ
+    
+    franja = puntos en rango [x_medio - δ, x_medio + δ]
+    (p1_franja, p2_franja, d_franja) = buscar_en_franja(franja, δ)
+    
+    retornar min(mejor_par, par_franja)</pre>
+
+    <h3>4.3 Complejidad Temporal</h3>
+    <ul>
+        <li><strong>Mejor caso:</strong> O(n log n)</li>
+        <li><strong>Caso promedio:</strong> O(n log n)</li>
+        <li><strong>Peor caso:</strong> O(n log n)</li>
+    </ul>
+    <p>La recurrencia es: <code>T(n) = 2T(n/2) + O(n)</code></p>
+
+    <h3>4.4 Complejidad Espacial</h3>
+    <p><strong>O(n)</strong> para almacenar las listas ordenadas</p>
+</div>
+
+<div class="section page-break">
+    <h2>5. Funciones Detalladas</h2>
+    
+    <h3>5.1 Función: calcular_distancia(punto1, punto2)</h3>
+    <p><strong>Propósito:</strong> Calcula la distancia euclidiana entre dos puntos.</p>
+    
+    
