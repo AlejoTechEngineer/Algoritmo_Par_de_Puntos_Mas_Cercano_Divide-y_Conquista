@@ -463,6 +463,23 @@ puntos = [(0, 0), (100, 100), (0.1, 0.1), (99.9, 99.9)]
 
 Proyecto desarrollado como parte del curso de **Diseño Avanzado de Algoritmos**.
 
+## Arquitectura
+
+```mermaid
+flowchart TD
+    A[par_mas_cercano.py] --> B{divide_y_conquista-puntos}
+    B --> C[ordenar_por_x-puntos]
+    B --> D[mitad_izquierda]
+    B --> E[mitad_derecha]
+    D --> F[recursion izquierda]
+    E --> G[recursion derecha]
+    F --> H{min-dist_izq - dist_der}
+    G --> H
+    H --> I[franja_central-d]
+    I --> J[calcular_distancia_euclidiana]
+    J --> K[(datos_100.txt / datos_1000.txt / datos_10000.txt)]
+```
+
 ## Licencia
 
 Este proyecto es de uso académico.
