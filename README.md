@@ -14,50 +14,22 @@ Este proyecto implementa el algoritmo de **Divide y Conquista** para encontrar e
 
 Dado un conjunto de `n` puntos en el plano 2D, encontrar el par de puntos que tienen la menor distancia euclidiana entre ellos, utilizando la estrategia de divide y conquista en lugar del enfoque de fuerza bruta O(n²).
 
-## Arquitectura del Proyecto
+## Arquitectura
 
-### Estructura de Archivos
-
+```mermaid
+flowchart TD
+    A[par_mas_cercano.py] --> B{divide_y_conquista-puntos}
+    B --> C[ordenar_por_x-puntos]
+    B --> D[mitad_izquierda]
+    B --> E[mitad_derecha]
+    D --> F[recursion izquierda]
+    E --> G[recursion derecha]
+    F --> H{min-dist_izq - dist_der}
+    G --> H
+    H --> I[franja_central-d]
+    I --> J[calcular_distancia_euclidiana]
+    J --> K[(datos_100.txt / datos_1000.txt / datos_10000.txt)]
 ```
-proyecto/
-│
-├── par_mas_cercano.py          # Código principal
-├── datos_100.txt               # Archivo de prueba con 100 puntos
-├── datos_1000.txt              # Archivo de prueba con 1000 puntos
-├── datos_10000.txt             # Archivo de prueba con 10000 puntos
-└── README.md                   # Documentación
-```
-
-### Componentes Principales
-
-El código está organizado en los siguientes componentes:
-
-#### 1. Clase ContadoresAlgoritmo
-
-```python
-class ContadoresAlgoritmo:
-    - llamadas: Contador de llamadas recursivas
-    - fuerza_bruta: Contador de llamadas a fuerza bruta
-    - distancia: Contador de cálculos de distancia
-    - franja: Contador de búsquedas en franja
-```
-
-Esta clase encapsula todos los contadores para análisis de rendimiento, eliminando el uso de variables globales.
-
-#### 2. Funciones de Entrada/Salida
-
-- **`leer_puntos_archivo(nombre_archivo)`**: Lee coordenadas desde un archivo de texto
-- **`mostrar_menu()`**: Muestra el menú interactivo
-- **`obtener_nombre_archivo()`**: Gestiona la selección de archivos
-- **`imprimir_resultados(...)`**: Formatea y muestra los resultados
-
-#### 3. Funciones del Algoritmo
-
-- **`calcular_distancia(punto1, punto2)`**: Calcula la distancia euclidiana
-- **`fuerza_bruta_par_cercano(puntos)`**: Encuentra el par más cercano por fuerza bruta (caso base)
-- **`par_cercano_en_franja(franja, delta, mejor_par)`**: Busca en la franja central
-- **`par_mas_cercano_recursivo(puntos_x, puntos_y)`**: Implementación recursiva principal
-- **`encontrar_par_mas_cercano(puntos)`**: Función coordinadora principal
 
 ## Algoritmo: Divide y Conquista
 
