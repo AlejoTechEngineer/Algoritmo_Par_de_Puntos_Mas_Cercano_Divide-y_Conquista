@@ -1,6 +1,12 @@
+<div align="center">
+
 # Par de Puntos Más Cercano - Divide y Conquista
 
 ## Descripción
+
+</div>
+
+---
 
 Este proyecto implementa el algoritmo de **Divide y Conquista** para encontrar el par de puntos con la menor distancia euclidiana en un conjunto de puntos en el plano 2D. El algoritmo es eficiente y tiene una complejidad temporal de **O(n log n)**.
 
@@ -492,3 +498,12 @@ Este proyecto es de uso académico.
 ---
 
 **Última actualización**: Octubre 2025
+
+---
+
+## Autor
+
+**Alejandro De Mendoza**  
+Ingeniero Informático · Especialista en IA · Especialista en Ingeniería de Software · Máster en Arquitectura de Software
+
+[![GitHub](https://img.shields.io/badge/GitHub-AlejoTechEngineer-181717?style=for-the-badge&logo=github)](https://github.com/AlejoTechEngineer)
